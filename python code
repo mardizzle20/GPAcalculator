@@ -1,0 +1,103 @@
+#global variables so that each function can have access to info
+current_GPA = 0
+total_grade_points = 0
+units_towards_GPA = 0
+
+#this is the bigger function that will be used to collect the amount of classes and units for each class
+def GPA_calc():
+    print("We are going to calculate what you need to get for certain GPA boosts\n")
+    
+    num_classes = int(input("Enter how many classes you have: "))
+    classes_units = {}
+    for classes in range(0, num_classes):
+        unit = int(input("Class " + str(classes + 1) + " is how many units: "))
+        classes_units[classes] = unit
+    print("Your class and units are:\n")
+
+    get_A(classes_units)
+    get_B(classes_units)
+    get_C(classes_units)
+    get_D(classes_units)
+    get_F(classes_units)
+
+
+#smaller function that prints out the current GPA and then gives the 
+#hypothetical GPA if you get all of the same letter grades for your classes
+#does not account for minus or plus
+#for loops within the functions calculate the points and units for the semester
+def get_A(grades):
+    semester_points = 0
+    semester_units = 0
+    new_GPA = 0
+    for units in grades:
+        points = grades[units] * 4
+        semester_points += points
+        semester_units += grades[units]
+    
+    new_GPA = semester_points / semester_units
+    print("Current GPA is: " + str(current_GPA))
+    print("Getting all As, new GPA is: " + str((total_grade_points + semester_points) / (units_towards_GPA + semester_units)))
+  
+
+def get_B(grades):
+    semester_points = 0
+    semester_units = 0
+    new_GPA = 0
+    for units in grades:
+        points = grades[units] * 3
+        semester_points += points
+        semester_units += grades[units]
+    
+    new_GPA = semester_points / semester_units
+    print("Current GPA is: " + str(current_GPA))
+    print("Getting all Bs, new GPA is: " + str((total_grade_points + semester_points) / (units_towards_GPA + semester_units)))
+
+
+def get_C(grades):
+    semester_points = 0
+    semester_units = 0
+    new_GPA = 0
+    for units in grades:
+        points = grades[units] * 2
+        semester_points += points
+        semester_units += grades[units]
+    
+    new_GPA = semester_points / semester_units
+    print("Current GPA is: " + str(current_GPA))
+    print("Getting all Cs, new GPA is: " + str((total_grade_points + semester_points) / (units_towards_GPA + semester_units)))
+
+
+def get_D(grades):
+    semester_points = 0
+    semester_units = 0
+    new_GPA = 0
+    for units in grades:
+        points = grades[units] * 1
+        semester_points += points
+        semester_units += grades[units]
+    
+    new_GPA = semester_points / semester_units
+    print("Current GPA is: " + str(current_GPA))
+    print("Getting all Ds, new GPA is: " + str((total_grade_points + semester_points) / (units_towards_GPA + semester_units)))
+
+
+def get_F(grades):
+    semester_points = 0
+    semester_units = 0
+    new_GPA = 0
+    for units in grades:
+        semester_units += grades[units]
+    
+    new_GPA = semester_points / semester_units
+    print("Current GPA is: " + str(current_GPA))
+    print("Getting all Fs, new GPA is: " + str((total_grade_points) / (units_towards_GPA + semester_units)))
+
+
+
+total_grade_points = float(input("What is the total grade points you have: "))
+units_towards_GPA = float(input("How many units towards your GPA do you have: "))
+current_GPA = total_grade_points / units_towards_GPA
+print("Your current GPA is: " + str(current_GPA))
+
+
+GPA_calc()
